@@ -2,7 +2,7 @@ import CartIcon from "../../Cart/CartIcon";
 import classes from "./HeaderCartButton.module.css";
 import { useContext } from "react";
 import CartContext from "../../../store/cart-context";
- 
+
 const HeaderCartButton = ({ onClick }) => {
   const ctx = useContext(CartContext);
 
@@ -12,8 +12,10 @@ const HeaderCartButton = ({ onClick }) => {
     return curValue + item.amount;
   }, 0);
 
+  const btnClasses = `${classes.button} ${classes.bump}`;
+
   return (
-    <button className={classes.button} onClick={onClick}>
+    <button className={btnClasses} onClick={onClick}>
       <span className={classes.icon}>
         <CartIcon />
       </span>
