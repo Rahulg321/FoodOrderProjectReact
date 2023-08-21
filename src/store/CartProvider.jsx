@@ -65,7 +65,7 @@ export default function CartProvider(props) {
     cartReducer,
     defaultCartState
   );
-  const addItemToCart = (item) => {
+  const addItemToCart = (item) => { 
     dispatchCartAction({ type: "ADD", val: item });
   };
 

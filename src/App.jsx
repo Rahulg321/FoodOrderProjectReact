@@ -9,13 +9,12 @@ const App = () => {
   const [showCart, setShowCart] = useState(false);
 
   const showCartHandler = () => {
-    console.log("show the card");
     setShowCart(true);
   };
   const hideCartHandler = () => {
     setShowCart(false);
   };
-
+ 
   return (
     <CartProvider>
       {showCart && <Cart onHideCart={hideCartHandler} />}
