@@ -35,6 +35,7 @@ const cartReducer = (state, action) => {
       }
 
       return { items: updatedItems, totalAmount: updatedTotalAmount };
+
     case "REMOVE":
       const cartItemIndex = state.items.findIndex((item) => {
         return item.id === action.id;
@@ -55,6 +56,9 @@ const cartReducer = (state, action) => {
       }
 
       return { items: newItems, totalAmount: newTotalAmount };
+
+    case "CLEAR":
+      return defaultCartState;
   }
 
   return defaultCartState;
@@ -65,7 +69,7 @@ export default function CartProvider(props) {
     cartReducer,
     defaultCartState
   );
-  const addItemToCart = (item) => { 
+  const addItemToCart = (item) => {
     dispatchCartAction({ type: "ADD", val: item });
   };
 
@@ -73,10 +77,15 @@ export default function CartProvider(props) {
     dispatchCartAction({ type: "REMOVE", id: id });
   };
 
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: "CLEAR" });
+  };
+
   const cartContext = {
     items: cartState.items,
     addItem: addItemToCart,
     removeItem: removeItemFromCart,
+    clearCart: clearCartHandler,
     totalAmount: cartState.totalAmount,
   };
 
